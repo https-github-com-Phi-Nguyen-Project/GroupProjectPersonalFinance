@@ -28,16 +28,16 @@ Allow users to track on their budget. User can add their monthly income and cate
 
 **Required Features**
 
-[] User can login to app
-[] User can ener monthly budget
-[] User can add mandatory bills for every month
-[] App lets you know when you have reached your monthly limit
+* [] User can login to app
+* [] User can ener monthly budget
+* [] User can add mandatory bills for every month
+* [] App lets you know when you have reached your monthly limit
 
 **Stretch Features**
 
-[] App customized for user view
-[] App is designed with colors
-[] User can plan in advance for every month
+* [] App customized for user view
+* [] App is designed with colors
+* [] User can plan in advance for every month
 
 ### 2. Screen Archetypes
 
