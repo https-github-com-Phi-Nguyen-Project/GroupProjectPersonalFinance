@@ -1,4 +1,4 @@
-# Milestone 1 - APP_NAME_HERE
+# Milestone 1 - My Personal Finance
 
 ## Table of Contents
 
