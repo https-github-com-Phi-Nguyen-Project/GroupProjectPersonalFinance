@@ -46,6 +46,7 @@ Allow users to track on their budget. User can add their monthly income and cate
   - ...
 - [Month of]
   - [User can pick which month they want to view]
+  - ...
 -[Budget]
   - [User can put in budget and monthly expenses and any other money they spent]
   - [User can see deductions as they add mo ey spent and at the end of the month they can see if they saved or went over]
