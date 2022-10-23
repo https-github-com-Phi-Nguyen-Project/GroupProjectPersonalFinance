@@ -28,30 +28,36 @@ Allow users to track on their budget. User can add their monthly income and cate
 
 **Required Features**
 
-* [fill in your required user features here]
-* ...
+[] User can login to app
+[] User can ener monthly budget
+[] User can add mandatory bills for every month
+[] App lets you know when you have reached your monthly limit
 
 **Stretch Features**
 
-* [fill in your optional user features here]
-* ...
+[] App customized for user view
+[] App is designed with colors
+[] User can plan in advance for every month
 
 ### 2. Screen Archetypes
 
-- [list first screen here]
-  - [list associated required story here]
+- [Login]
+  - [User can login to app to put in information]
   - ...
-- [list second screen here]
-  - [list associated required story here]
-  - ...
+- [Month of]
+  - [User can pick which month they want to view]
+-[Budget]
+  - [User can put in budget and monthly expenses and any other money they spent]
+  - [User can see deductions as they add mo ey spent and at the end of the month they can see if they saved or went over]
+  
 
 ### 3. Navigation
 
 **Tab Navigation** (Tab to Screen)
 
-* [fill out your first tab]
-* [fill out your second tab]
-* [fill out your third tab]
+* [Login]
+* [Month page]
+* [Buget]
 
 **Flow Navigation** (Screen to Screen)
 
