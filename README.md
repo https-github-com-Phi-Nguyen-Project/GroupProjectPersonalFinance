@@ -62,12 +62,9 @@ Allow users to track on their budget. User can add their monthly income and cate
 
 **Flow Navigation** (Screen to Screen)
 
-- [list first screen here]
-  - [list screen navigation here]
-  - ...
-- [list second screen here]
-  - [list screen navigation here]
-  - ...
+- [Login->Month Page]
+- [Month Page-> Budget]
+  
 
 ## Wireframes
 
