@@ -43,7 +43,7 @@ Allow users to track on their budget. User can add their monthly income and cate
 
 - [Login]
   - [User can login to app to put in information]
-  - ...
+ 
 - [Month of]
   - [User can pick which month they want to view]
   
