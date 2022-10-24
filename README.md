@@ -69,6 +69,6 @@ Allow users to track on their budget. User can add their monthly income and cate
 
 ## Wireframes
 
-[Add picture of your hand sketched wireframes in this section]
+
 <img src="https://raw.githubusercontent.com/https-github-com-Phi-Nguyen-Project/GroupProjectPersonalFinance/main/Codepath%20group.jpg" width=600>
 
