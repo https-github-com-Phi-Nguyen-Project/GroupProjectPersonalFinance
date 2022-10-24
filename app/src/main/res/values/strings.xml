@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">MyPerFinance</string>
+
+    <string name="back4app_server_url">https://parseapi.back4app.com/</string>
+    <!-- Paste BOTH strings as required -->
+    <string name="back4app_app_id">Heb49Gdi320KwoiwEYHo99uvywrwx7zx7pvqu4q0</string>
+    <string name="back4app_client_key">UncldA6WxCtxQlq4yt3NgoDr2AVex89sptDxCQ1U</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
 </resources>
