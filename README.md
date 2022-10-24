@@ -27,9 +27,9 @@ Allow users to track on their budget. User can add their monthly income and cate
 ### 1. User Features (Required and Optional)
 
 **Required Features**
-
+* 
 * [] User can login to app
-* [] User can ener monthly budget
+* [] User can enter monthly budget
 * [] User can add mandatory bills for every month
 * [] App lets you know when you have reached your monthly limit
 
@@ -42,7 +42,8 @@ Allow users to track on their budget. User can add their monthly income and cate
 ### 2. Screen Archetypes
 
 - [Login]
-  - [User can login to app to put in information]
+  - [User can login to app with credentials if no account user can create one and it will bw saved into cloud database]
+  
  
 - [Month of]
   - [User can pick which month they want to view]
