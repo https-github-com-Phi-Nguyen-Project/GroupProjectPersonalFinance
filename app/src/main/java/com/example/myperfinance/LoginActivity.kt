@@ -19,11 +19,37 @@ class LoginActivity : AppCompatActivity() {
 
         // When user click on login button
         findViewById<Button>(R.id.login_button).setOnClickListener{
-            val username = findViewById<EditText>(R.id.et_username).toString()
-            val password = findViewById<EditText>(R.id.et_password).toString()
+            val username = findViewById<EditText>(R.id.et_username).text.toString()
+            val password = findViewById<EditText>(R.id.et_password).text.toString()
 
             //call sign in function
             loginUser(username,password)
+        }
+
+        // When  user click on th sign up button
+        findViewById<Button>(R.id.signupBtn).setOnClickListener{
+            val username = findViewById<EditText>(R.id.et_username).text.toString()
+            val password = findViewById<EditText>(R.id.et_password).text.toString()
+            signUpUser(username,password)
+        }
+    }
+
+    private fun signUpUser(username: String, password: String) {
+        // Create the ParseUser
+        val user = ParseUser()
+
+        // Set fields for the user to be created
+        user.setUsername(username)
+        user.setPassword(password)
+
+        user.signUpInBackground { e ->
+            if (e == null) {
+                // Hooray! Let them use the app now.
+            } else {
+                // Sign up didn't succeed. Look at the ParseException
+                // to figure out what went wrong
+                e.printStackTrace()
+            }
         }
     }
 
