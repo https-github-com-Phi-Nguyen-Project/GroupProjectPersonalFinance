@@ -70,9 +70,9 @@ Allow users to track on their budget. User can add their monthly income and cate
 ## Wireframes
 
 
-<img src="https://raw.githubusercontent.com/https-github-com-Phi-Nguyen-Project/GroupProjectPersonalFinance/main/Codepath%20group.jpg" width=600>
+<img src="https://raw.githubusercontent.com/https-github-com-Phi-Nguyen-Project/GroupProjectPersonalFinance/main/MyPerFinance_walThrough.gif" width=600>
 
 -Gif Walkthrough
 <img src='https://raw.githubusercontent.com/https-github-com-Phi-Nguyen-Project/GroupProjectPersonalFinance/main/groupprojectunit9.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
 
-[licecap](https://www.cockos.com/licecap/)
+[Licecap](https://www.cockos.com/licecap/)
