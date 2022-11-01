@@ -29,7 +29,7 @@ Allow users to track on their budget. User can add their monthly income and cate
 **Required Features**
 * 
 * [X] User can login to app
-* [] User can enter monthly budget
+* [X] User can enter  budget
 * [] User can add mandatory bills for every month
 * [] App lets you know when you have reached your monthly limit
 
