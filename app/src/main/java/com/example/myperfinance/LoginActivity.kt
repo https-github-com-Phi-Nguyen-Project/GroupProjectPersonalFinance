@@ -5,6 +5,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
@@ -18,18 +19,18 @@ class LoginActivity : AppCompatActivity() {
         setContentView(R.layout.activity_login)
 
         // When user click on login button
-        findViewById<Button>(R.id.login_button).setOnClickListener{
-            val username = findViewById<EditText>(R.id.et_username).text.toString()
-            val password = findViewById<EditText>(R.id.et_password).text.toString()
+        findViewById<Button>(R.id.btnLogIn).setOnClickListener{
+            val username = findViewById<EditText>(R.id.userName).text.toString()
+            val password = findViewById<EditText>(R.id.userPass).text.toString()
 
             //call sign in function
             loginUser(username,password)
         }
 
         // When  user click on th sign up button
-        findViewById<Button>(R.id.signupBtn).setOnClickListener{
-            val username = findViewById<EditText>(R.id.et_username).text.toString()
-            val password = findViewById<EditText>(R.id.et_password).text.toString()
+        findViewById<Button>(R.id.btnSignUp).setOnClickListener{
+            val username = findViewById<EditText>(R.id.userPass).text.toString()
+            val password = findViewById<EditText>(R.id.userPass).text.toString()
             signUpUser(username,password)
         }
     }
