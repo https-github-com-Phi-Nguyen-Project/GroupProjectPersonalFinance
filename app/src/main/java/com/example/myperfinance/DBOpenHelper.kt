@@ -12,12 +12,13 @@ import java.util.*
 import kotlin.collections.HashMap
 
 
-private  val SQL_CREATE_GROUP_ENTRIES = "CREATE TABLE ${DBContract.CategoryEntry.TABLE_NAME} (" +
+private const val SQL_CREATE_GROUP_ENTRIES =
+    "CREATE TABLE ${DBContract.CategoryEntry.TABLE_NAME} (" +
             "${BaseColumns._ID} INTEGER PRIMARY KEY," +
             "${DBContract.CategoryEntry.COLUMN_NAME} TEXT NOT NULL," +
             "${DBContract.CategoryEntry.COLUMN_PARENT_GROUP_ID} INTEGER);"
 
-private  val SQL_CREATE_TRANSACTION_ENTRIES =
+private const val SQL_CREATE_TRANSACTION_ENTRIES =
     "CREATE TABLE ${DBContract.TransactionEntry.TABLE_NAME} (" +
             "${BaseColumns._ID} INTEGER PRIMARY KEY, " +
             "${DBContract.TransactionEntry.COLUMN_VALUE} REAL DEFAULT 0, " +
@@ -30,16 +31,16 @@ private  val SQL_CREATE_TRANSACTION_ENTRIES =
             "${DBContract.CategoryEntry.TABLE_NAME} (${BaseColumns._ID}) " +
             ");"
 
-private  val SQL_DROP_GROUPS = "DROP TABLE IF EXISTS ${DBContract.CategoryEntry.TABLE_NAME}"
-private  val SQL_DROP_TRANSACTIONS = "DROP TABLE IF EXISTS ${DBContract.TransactionEntry.TABLE_NAME}"
+private const val SQL_DROP_GROUPS = "DROP TABLE IF EXISTS ${DBContract.CategoryEntry.TABLE_NAME}"
+private const val SQL_DROP_TRANSACTIONS = "DROP TABLE IF EXISTS ${DBContract.TransactionEntry.TABLE_NAME}"
 
-private  val ORDER_BY_DATE = " ORDER BY datetime(${DBContract.TransactionEntry.COLUMN_DATE}) DESC"
+private const val ORDER_BY_DATE = " ORDER BY datetime(${DBContract.TransactionEntry.COLUMN_DATE}) DESC"
 
 class DBOpenHelper (context: Context):
     SQLiteOpenHelper(context, DATABASE_NAME, null, DATABASE_VERSION) {
 
     companion object {
-        const val DATABASE_NAME = "finances.db"
+        const val DATABASE_NAME = "myperFinance.db"
         const val DATABASE_VERSION = 1
     }
 

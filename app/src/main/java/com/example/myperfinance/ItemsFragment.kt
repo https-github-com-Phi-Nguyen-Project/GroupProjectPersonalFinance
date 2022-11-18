@@ -10,15 +10,14 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
 
-class ItemsFragment : Fragment() {
-
+class ItemsFragment : PageFragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_items, container, false)
+        return inflater.inflate(R.layout.rvitems, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -26,19 +25,25 @@ class ItemsFragment : Fragment() {
 
         val db = DBOpenHelper(activity!!.applicationContext)
         val cursor = db.getAllTransactions(true)
-        val recyclerView = view?.findViewById<RecyclerView>(R.id.transaction_list)
-        val adapter = cursor?.let { TransactionsAdapter(it) }
-        recyclerView?.adapter = adapter
 
+        val transaction_list = view.findViewById<RecyclerView>(R.id.transaction_list)
         if(cursor != null) {
-            recyclerView?.layoutManager = LinearLayoutManager(requireContext()).also {
-                val dividerItemDecoration = DividerItemDecoration(requireContext(), it.orientation)
-                recyclerView?.addItemDecoration(dividerItemDecoration)
-            }
-            adapter?.notifyDataSetChanged()
+            transaction_list.apply {
+                layoutManager = LinearLayoutManager(context)
+                adapter = TransactionsAdapter(cursor, activity as TransactionsAdapter.OnItemClickListener)
             }
         }
-
-
     }
 
+    override fun notifyDataUpdate() {
+        val db = DBOpenHelper(activity!!.applicationContext)
+        val cursor = db.getAllTransactions(true)
+
+        if(cursor != null) {
+            val recyclerViewAdapter = view?.findViewById<RecyclerView>(R.id.transaction_list)?.adapter as TransactionsAdapter
+            recyclerViewAdapter.swapCursor(cursor)
+        }
+        view?.findViewById<RecyclerView>(R.id.transaction_list)?.adapter?.notifyDataSetChanged()
+    }
+
+}

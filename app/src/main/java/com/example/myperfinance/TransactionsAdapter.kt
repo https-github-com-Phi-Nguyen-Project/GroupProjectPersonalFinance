@@ -9,7 +9,7 @@ import android.widget.AdapterView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
-class TransactionsAdapter(private var data: Cursor, val itemClickListener: AdapterView.OnItemClickListener):
+class TransactionsAdapter(private var data: Cursor, val itemClickListener: OnItemClickListener):
     RecyclerView.Adapter<TransactionsAdapter.ViewHolder>() {
 
 
@@ -57,10 +57,10 @@ class TransactionsAdapter(private var data: Cursor, val itemClickListener: Adapt
             mValue.text = value.toString()
 
         }
-
-
-
     }
 
 
+    interface OnItemClickListener{
+        fun onClick(id: Int)
+    }
 }
