@@ -16,7 +16,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.ismaeldivita.chipnavigation.ChipNavigationBar
 import kotlinx.coroutines.Dispatchers
-
+import com.google.android.material.tabs.TabLayout
 
 val DEFAULT_CAT_LIST = listOf("Food", "Entertainment", "Public Transport",
    "Work", "Health", "Electronics", "Clothing", "Family", "Services")
@@ -33,19 +33,21 @@ class MainActivity : AppCompatActivity(), TransactionsAdapter.OnItemClickListene
     }
 
     private lateinit var sectionsPagerAdapter: PageAdapter
+    lateinit var tabLayout: TabLayout
+    //lateinit var viewPager: ViewPager
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        tabLayout = findViewById(R.id.tabs)
+       val  viewPager = findViewById<ViewPager>(R.id.view_pager)
+
+        viewPager.adapter = sectionsPagerAdapter
         sectionsPagerAdapter =
             PageAdapter(this, supportFragmentManager)
 
-        val view_pager = findViewById<ViewPager>(R.id.view_pager)
-        view_pager.adapter = sectionsPagerAdapter
-
-        var tabs = findViewById<ChipNavigationBar>(R.id.chip_app_bar)
-        tabs.setupWithViewPager(view_pager)
+        tabLayout.setupWithViewPager(viewPager)
 
         //Add transaction button
         val fab: FloatingActionButton = findViewById(R.id.fab)
@@ -74,19 +76,20 @@ class MainActivity : AppCompatActivity(), TransactionsAdapter.OnItemClickListene
     }
 
     override fun onClick(id: Int) {
-        val intent = Intent(this, TransactionActivity::class.java)
+        val intent = Intent(this, Transaction::class.java)
         intent.putExtra(EXTRA_CODE, REQUEST_EDIT)
         intent.putExtra(EXTRA_TRANSACTION, id)
         startActivityForResult(intent, REQUEST_EDIT)
     }
 
     private fun startAddActivity() {
-        val intent = Intent(this, TransactionActivity::class.java)
+        val intent = Intent(this, Transaction::class.java)
         intent.putExtra(EXTRA_CODE, REQUEST_ADD)
         startActivityForResult(intent, REQUEST_ADD)
     }
 
     private fun getActivePage(): PageFragment {
+        val view_pager = findViewById<ViewPager>(R.id.view_pager)
         val position = view_pager.currentItem
         return sectionsPagerAdapter.getRegisteredFragment(position) as PageFragment
     }
