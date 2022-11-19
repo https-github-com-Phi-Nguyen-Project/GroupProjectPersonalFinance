@@ -4,8 +4,10 @@ import com.parse.Parse
 
 
 class MyPerFinanceApplication : Application() {
+    val db by lazy { AppDatabase.getInstance(this) }
     override fun onCreate() {
         super.onCreate()
+
         Parse.initialize(
             Parse.Configuration.Builder(this)
                 .applicationId(getString(R.string.back4app_app_id))
@@ -13,4 +15,5 @@ class MyPerFinanceApplication : Application() {
                 .server(getString(R.string.back4app_server_url))
                 .build());
     }
+
 }

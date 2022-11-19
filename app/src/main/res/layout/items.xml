@@ -66,8 +66,7 @@
                 android:gravity="right"
                 android:text="99999.99"
                 android:textColor="@color/black"
-                android:textSize="18sp"
-                />
+                android:textSize="18sp" />
 
             <TextView
                 android:id="@+id/tvDate"

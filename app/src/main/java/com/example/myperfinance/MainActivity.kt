@@ -1,104 +1,147 @@
 package com.example.myperfinance
 
 import android.app.Activity
-import android.content.ClipData.Item
+import android.app.Application
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.SparseArray
 import android.view.View
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
-import androidx.viewpager.widget.ViewPager
+import androidx.lifecycle.lifecycleScope
 import com.example.myperfinance.databinding.ActivityMainBinding
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.ismaeldivita.chipnavigation.ChipNavigationBar
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
+class MainActivity : AppCompatActivity(){
 
-val DEFAULT_CAT_LIST = listOf("Food", "Entertainment", "Public Transport",
-   "Work", "Health", "Electronics", "Clothing", "Family", "Services")
+    private lateinit var binding: ActivityMainBinding
+    private val newTransactionRequestCode = 1
 
-class MainActivity : AppCompatActivity(), TransactionsAdapter.OnItemClickListener {
-
-    companion object {
-        const val REQUEST_ADD = 20
-        const val REQUEST_EDIT = 21
-        const val REQ_ADD_OK = 21
-        const val REQ_EDIT_OK = 22
-        const val EXTRA_TRANSACTION = "extra_id"
-        const val EXTRA_CODE = "request_code"
-    }
-
-    private lateinit var sectionsPagerAdapter: PageAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        sectionsPagerAdapter =
-            PageAdapter(this, supportFragmentManager)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
-        val view_pager = findViewById<ViewPager>(R.id.view_pager)
-        view_pager.adapter = sectionsPagerAdapter
 
-        var tabs = findViewById<ChipNavigationBar>(R.id.chip_app_bar)
-        tabs.setupWithViewPager(view_pager)
+        val transactionFragment = ItemsFragment()
+        val accountFragment = AccountFragment()
+        val investimentFragment = InvestmentFragment()
+        val settingFragment = SettingFragment()
 
-        //Add transaction button
-        val fab: FloatingActionButton = findViewById(R.id.fab)
+        binding.chipAppBar.setItemSelected(R.id.ic_transaction,true)
+        makeCurrentFragment(transactionFragment)
+        binding.chipAppBar.setOnItemSelectedListener { //when the bottom nav clicked
+            when (it){
+                R.id.ic_transaction -> {
+                    makeCurrentFragment(transactionFragment)
+                    Toast.makeText(this, "Transaction",Toast.LENGTH_SHORT).show()
+                }
+                R.id.ic_account -> {
+                    makeCurrentFragment(accountFragment)
+                    Toast.makeText(this, "Account",Toast.LENGTH_SHORT).show()
+                }
+                R.id.ic_investment -> {
+                    makeCurrentFragment(investimentFragment)
+                    Toast.makeText(this, "Investment",Toast.LENGTH_SHORT).show()
+                }
+                R.id.ic_setting -> {
+                    makeCurrentFragment(settingFragment)
+                    Toast.makeText(this, "Setting",Toast.LENGTH_SHORT).show()
+                }
 
-        fab.setOnClickListener { view ->
-
-            startAddActivity()
-            /*Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                .setAction("Action", null).show()*/
-        }
-    }
-
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-
-        if(requestCode == REQUEST_ADD) {
-
-            if(resultCode == REQ_ADD_OK) {
-                notifyFragmentsToUpdate()
             }
-        } else if (requestCode == REQUEST_EDIT) {
-            if(resultCode == REQ_EDIT_OK) {
-                notifyFragmentsToUpdate()
+            val b = true
+            b
+        }
+
+
+        /*
+        val fragmentManager: FragmentManager = supportFragmentManager
+
+        findViewById<ChipNavigationBar>(R.id.chip_app_bar).setOnItemSelectedListener {
+                item ->
+            var fragmentToShow: Fragment? = null
+
+            when(item.itemId){
+                R.id.ic_transaction -> {
+                    // Navigate to list of Transactions
+                    fragmentToShow = ItemsFragment()
+                    Toast.makeText(this, "Transaction",Toast.LENGTH_SHORT).show()
+                }
+                R.id.ic_account -> {
+                    // Navigate to Account page
+                    fragmentToShow = AccountFragment()
+                    Toast.makeText(this, "Account",Toast.LENGTH_SHORT).show()
+                }
+                R.id.ic_investment -> {
+                    // Navigate to Investment page
+                    fragmentToShow = InvestmentFragment()
+                    Toast.makeText(this, "Investment",Toast.LENGTH_SHORT).show()
+                }
+                R.id.ic_setting -> {
+                    // Navigate to list of food view
+                    fragmentToShow = SettingFragment()
+                    Toast.makeText(this, "Setting",Toast.LENGTH_SHORT).show()
+                }
             }
+            if (fragmentToShow != null){
+                fragmentManager.beginTransaction().replace(R.id.flContainer,fragmentToShow).commit()
+            }
+
+            true
+        }
+        // Set default selection
+        findViewById<BottomNavigationView>(R.id.bottom_navigation).selectedItemId = R.id.ic_transaction
+*/
+    }
+    private fun makeCurrentFragment(fragment: Fragment) { //method 2
+        supportFragmentManager.beginTransaction().apply {
+            replace(R.id.flContainer, fragment)
+            commit()
         }
     }
 
-    override fun onClick(id: Int) {
-        val intent = Intent(this, TransactionActivity::class.java)
-        intent.putExtra(EXTRA_CODE, REQUEST_EDIT)
-        intent.putExtra(EXTRA_TRANSACTION, id)
-        startActivityForResult(intent, REQUEST_EDIT)
+
+    fun floating_button(view: View){
+
+        val intent = Intent(this, Transaction::class.java)
+
+        startActivityForResult(intent, newTransactionRequestCode)
     }
 
-    private fun startAddActivity() {
-        val intent = Intent(this, TransactionActivity::class.java)
-        intent.putExtra(EXTRA_CODE, REQUEST_ADD)
-        startActivityForResult(intent, REQUEST_ADD)
-    }
+    override fun onActivityResult(requestCode: Int, resultCode: Int, intentData: Intent?) {
+        super.onActivityResult(requestCode, resultCode, intentData)
 
-    private fun getActivePage(): PageFragment {
-        val position = view_pager.currentItem
-        return sectionsPagerAdapter.getRegisteredFragment(position) as PageFragment
-    }
 
-    private fun getActiveFragments(): SparseArray<Fragment> {
-        return sectionsPagerAdapter.getRegisteredFragments()
-    }
+        if (requestCode == newTransactionRequestCode && resultCode == Activity.RESULT_OK) {
 
-    fun notifyFragmentsToUpdate() {
-        val fragments = getActiveFragments()
-        for(i in 0 until fragments.size()) {
-            (fragments.get(i) as PageFragment).notifyDataUpdate()
+            intentData.let{data ->
+                lifecycleScope.launch(Dispatchers.IO) {
+                    (application as MyPerFinanceApplication).db.itemsDAO().insertAll(
+                        Items(
+                            id = 0,
+                            title = data?.getStringExtra(Transaction.EXTRA_TITLE),
+                            amount = data?.getStringExtra(Transaction.EXTRA_AMOUNT)?.toDouble()
+                        )
+                    )
+                }
+            }
+
+        } else {
+            Toast.makeText(
+                this,
+                "Not saved",
+                Toast.LENGTH_LONG
+            ).show()
         }
     }
+
+
 }

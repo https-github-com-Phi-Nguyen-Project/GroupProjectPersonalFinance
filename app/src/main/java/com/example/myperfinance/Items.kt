@@ -1,7 +1,16 @@
 package com.example.myperfinance
 
-import java.io.Serializable
-import java.util.*
+import androidx.room.ColumnInfo
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 
-class Items (var id: Int, var value: Float, var title: String, var isExpense: Boolean,
-             var date: Date, var desc: String, var category: Int): Serializable
+
+
+@Entity(tableName = "TransactionData")
+class Items (
+
+    @PrimaryKey(autoGenerate = true) val id: Long = 0,
+    @ColumnInfo(name = "Title") val title: String?,
+    @ColumnInfo(name = "amount")  val amount: Double?
+
+        )
